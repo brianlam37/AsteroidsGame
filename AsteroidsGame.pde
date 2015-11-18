@@ -22,13 +22,13 @@ public void draw()
   //your code here
     if(right==true){w0.rotate(6);}
     if(left==true){w0.rotate(-6); }
-    if(up==true){w0.accelerate(0.2);}
-    if(down==true){w0.accelerate(-0.2);}
-
+    if(up==true){w0.accelerate(0.1);}
+    if(down==true){w0.accelerate(-0.1);}
   for(int i=0;i<stars.length;i++){
 
     stars[i].show();
   }
+
     w0.show();
   w0.move();
 }
@@ -38,12 +38,13 @@ public void keyPressed(){
     if(key == 'w'){up=true;}
     if(key=='s'){down=true;}
     if(key =='f'){
-       w0.setX((int)(Math.random()*400));
+       w0.setX((int)(Math.random()*1000));
        w0.setY((int)(Math.random()*400));
        w0.setDirectionX(0);
        w0.setDirectionY(0);
 
        w0.accelerate(0);
+
 
 
     }
@@ -106,7 +107,109 @@ class SpaceShip extends Floater
 
     SpaceShip(){
 
+      myBColor=color(255,127,39);
       myColor=color(129, 208, 222);
+      b1corners=11;
+      xB1Corners = new int [b1corners];
+      yB1Corners = new int [b1corners];
+      xB1Corners[0]=-16;
+      yB1Corners[0]=17;
+      xB1Corners[1]=-14;
+      yB1Corners[1]=18;
+      xB1Corners[2]=-13;
+      yB1Corners[2]=19;
+      xB1Corners[3]=-15;
+      yB1Corners[3]=20;
+      xB1Corners[4]=-12;
+      yB1Corners[4]=21;
+      xB1Corners[5]=-11;
+      yB1Corners[5]=21;
+      xB1Corners[6]=-11;
+      yB1Corners[6]=20;
+      xB1Corners[7]=-12;
+      yB1Corners[7]=16;
+      xB1Corners[8]=-15;
+      yB1Corners[8]=15;
+      xB1Corners[9]=-13;
+      yB1Corners[9]=15;
+      xB1Corners[10]=-14;
+      yB1Corners[10]=16;
+      b2corners=11;
+      xB2Corners = new int [b2corners];
+      yB2Corners = new int [b2corners];
+      xB2Corners[0]=-16;
+      yB2Corners[0]=-17;
+      xB2Corners[1]=-14;
+      yB2Corners[1]=-18;
+      xB2Corners[2]=-13;
+      yB2Corners[2]=-19;
+      xB2Corners[3]=-15;
+      yB2Corners[3]=-20;
+      xB2Corners[4]=-12;
+      yB2Corners[4]=-21;
+      xB2Corners[5]=-11;
+      yB2Corners[5]=-21;
+      xB2Corners[6]=-11;
+      yB2Corners[6]=-20;
+      xB2Corners[7]=-12;
+      yB2Corners[7]=-16;
+      xB2Corners[8]=-15;
+      yB2Corners[8]=-15;
+      xB2Corners[9]=-13;
+      yB2Corners[9]=-15;
+      xB2Corners[10]=-14;
+      yB2Corners[10]=-16;
+      b3corners=11;
+      xB3Corners = new int [b3corners];
+      yB3Corners = new int [b3corners];
+      xB3Corners[0]=-40;
+      yB3Corners[0]=-2;
+      xB3Corners[1]=-38;
+      yB3Corners[1]=-3;
+      xB3Corners[2]=-37;
+      yB3Corners[2]=-4;
+      xB3Corners[3]=-39;
+      yB3Corners[3]=-5;
+      xB3Corners[4]=-36;
+      yB3Corners[4]=-6;
+      xB3Corners[5]=-35;
+      yB3Corners[5]=-6;
+      xB3Corners[6]=-35;
+      yB3Corners[6]=-5;
+      xB3Corners[7]=-36;
+      yB3Corners[7]=-1;
+      xB3Corners[8]=-29;
+      yB3Corners[8]=0;
+      xB3Corners[9]=-37;
+      yB3Corners[9]=0;
+      xB3Corners[10]=-38;
+      yB3Corners[10]=-1;
+      b4corners=11;
+      xB4Corners = new int [b4corners];
+      yB4Corners = new int [b4corners];
+      xB4Corners[0]=-40;
+      yB4Corners[0]=2;
+      xB4Corners[1]=-38;
+      yB4Corners[1]=3;
+      xB4Corners[2]=-37;
+      yB4Corners[2]=4;
+      xB4Corners[3]=-39;
+      yB4Corners[3]=5;
+      xB4Corners[4]=-36;
+      yB4Corners[4]=6;
+      xB4Corners[5]=-35;
+      yB4Corners[5]=6;
+      xB4Corners[6]=-35;
+      yB4Corners[6]=5;
+      xB4Corners[7]=-36;
+      yB4Corners[7]=1;
+      xB4Corners[8]=-29;
+      yB4Corners[8]=0;
+      xB4Corners[9]=-37;
+      yB4Corners[9]=0;
+      xB4Corners[10]=-38;
+      yB4Corners[10]=1;
+
 
       corners=131;
       xCorners = new int [corners];
@@ -376,7 +479,7 @@ class SpaceShip extends Floater
 
 
 
-      myCenterX=200;
+      myCenterX=500;
       myCenterY=200;
       myDirectionX=0;
       myDirectionY=0;
@@ -393,7 +496,25 @@ class SpaceShip extends Floater
 
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
-{   
+{ 
+  protected int b1corners;
+  protected int[] xB1Corners;
+  protected int[] yB1Corners;
+  protected int myBColor;
+  protected int b2corners;
+  protected int[] xB2Corners;
+  protected int[] yB2Corners;
+
+  protected int b3corners;
+  protected int[] xB3Corners;
+  protected int[] yB3Corners;
+
+  protected int b4corners;
+  protected int[] xB4Corners;
+  protected int[] yB4Corners;
+
+
+
   protected int corners;  //the number of corners, a triangular floater has 3   
   protected int[] xCorners;   
   protected int[] yCorners;   
@@ -452,20 +573,65 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   }   
   public void show ()  //Draws the floater at the current position  
   {             
-    fill(myColor);   
-    stroke(129, 208, 222,50);    
+   
     //convert degrees to radians for sin and cos         
     double dRadians = myPointDirection*(Math.PI/180);                 
     int xRotatedTranslated, yRotatedTranslated;    
+
+        beginShape();
+    for(int nI = 0; nI < b1corners; nI++)    
+    {   
+        fill(myBColor);   
+
+      //rotate and translate the coordinates of the floater using current direction 
+      xRotatedTranslated = (int)((xB1Corners[nI]* Math.cos(dRadians)) - (yB1Corners[nI] * Math.sin(dRadians))+myCenterX);     
+      yRotatedTranslated = (int)((xB1Corners[nI]* Math.sin(dRadians)) + (yB1Corners[nI] * Math.cos(dRadians))+myCenterY);      
+      vertex(xRotatedTranslated,yRotatedTranslated);    
+      
+    } 
+    endShape(CLOSE);
+    beginShape();
+    for(int nI = 0; nI < b2corners; nI++)    
+    {     
+      fill(myBColor); 
+      //rotate and translate the coordinates of the floater using current direction 
+      xRotatedTranslated = (int)((xB2Corners[nI]* Math.cos(dRadians)) - (yB2Corners[nI] * Math.sin(dRadians))+myCenterX);     
+      yRotatedTranslated = (int)((xB2Corners[nI]* Math.sin(dRadians)) + (yB2Corners[nI] * Math.cos(dRadians))+myCenterY);      
+      vertex(xRotatedTranslated,yRotatedTranslated);    
+      
+    }
+    endShape(CLOSE);
+    beginShape();
+    for(int nI = 0; nI < b3corners; nI++)    
+    {     fill(myBColor); 
+      //rotate and translate the coordinates of the floater using current direction 
+      xRotatedTranslated = (int)((xB3Corners[nI]* Math.cos(dRadians)) - (yB3Corners[nI] * Math.sin(dRadians))+myCenterX);     
+      yRotatedTranslated = (int)((xB3Corners[nI]* Math.sin(dRadians)) + (yB3Corners[nI] * Math.cos(dRadians))+myCenterY);      
+      vertex(xRotatedTranslated,yRotatedTranslated);    
+      
+    }
+    endShape(CLOSE);
+    beginShape();
+    for(int nI = 0; nI < b4corners; nI++)    
+    {     fill(myBColor); 
+      //rotate and translate the coordinates of the floater using current direction 
+      xRotatedTranslated = (int)((xB4Corners[nI]* Math.cos(dRadians)) - (yB4Corners[nI] * Math.sin(dRadians))+myCenterX);     
+      yRotatedTranslated = (int)((xB4Corners[nI]* Math.sin(dRadians)) + (yB4Corners[nI] * Math.cos(dRadians))+myCenterY);      
+      vertex(xRotatedTranslated,yRotatedTranslated);    
+      
+    }               
+    endShape(CLOSE);  
     beginShape();         
     for(int nI = 0; nI < corners; nI++)    
-    {     
+    { 
+        fill(myColor);   
+    stroke(129, 208, 222,50);     
       //rotate and translate the coordinates of the floater using current direction 
       xRotatedTranslated = (int)((xCorners[nI]* Math.cos(dRadians)) - (yCorners[nI] * Math.sin(dRadians))+myCenterX);     
       yRotatedTranslated = (int)((xCorners[nI]* Math.sin(dRadians)) + (yCorners[nI] * Math.cos(dRadians))+myCenterY);      
       vertex(xRotatedTranslated,yRotatedTranslated);    
       
-    }   
+    }
     endShape(CLOSE);
     
       /*pushMatrix();
@@ -487,7 +653,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
 
   }   
 } 
-public void ship(int x, int y){
+/*public void ship(int x, int y){
           
     rectMode(CENTER);
     int [][] pix = { {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -654,4 +820,4 @@ public void ship(int x, int y){
         y += h+1;//makes //makes pix equally distant
         a =0;//makes it so that every row is not always ongoing based on "a" value from "a += w"
     }
-};
+};*/
