@@ -1,5 +1,6 @@
 //your intiable declarations here
 Star [] stars;
+Asteroids [] rocks;
 SpaceShip w0;
 boolean left, right, up, down;
 public void setup() 
@@ -11,6 +12,12 @@ public void setup()
 
     stars[i]= new Star();
   }
+  rocks=new Asteroids[20];
+  for(int i=0;i<rocks.length;i++){
+
+    rocks[i]= new Asteroids();
+  }
+
 
 
 }
@@ -28,10 +35,16 @@ public void draw()
 
     stars[i].show();
   }
+  for(int i=0;i<rocks.length;i++){
 
+    rocks[i].show();
+    rocks[i].move();
+  }
+  
     w0.show();
   w0.move();
 }
+
 public void keyPressed(){
     if(key == 'd'){right=true;}
     if(key == 'a'){left=true; }
@@ -90,6 +103,78 @@ class Star
   }
 
 }
+
+class Asteroids extends Floater
+{
+    private int rotAst;
+    public void setX(int x){ myCenterX=x;}
+    public int getX(){ return (int)myCenterX;}
+    public void setY(int y){myCenterY=y;}
+    public int getY(){return (int)myCenterY;}
+    public void setDirectionX(double x){ myDirectionX=x;}
+    public double getDirectionX(){return myDirectionX;}
+    public void setDirectionY(double y){myDirectionY=y;}
+    public double getDirectionY(){return myDirectionY;}
+    public void setPointDirection(int degrees){myPointDirection=degrees;}
+    public double getPointDirection(){return myPointDirection;}
+    
+    public Asteroids(){
+      myCenterX=(int)(Math.random()*1000);
+      myCenterY=(int)(Math.random()*400);
+      myDirectionX = Math.cos(Math.random()*2*Math.PI);
+      myDirectionY = Math.sin(Math.random()*2*Math.PI);
+      myPointDirection=270;
+      rotAst = (int)(Math.random()*4);
+      myAColor=color(140, 208, 222);
+      a1corners=5;
+      xA1Corners = new int [a1corners];
+      yA1Corners = new int [a1corners];
+      xA1Corners[0]=(int)(Math.random()*30)-15;
+      yA1Corners[0]=(int)(Math.random()*30)-15;
+      xA1Corners[1]=(int)(Math.random()*30)-15;
+      yA1Corners[1]=(int)(Math.random()*30)-15;
+      xA1Corners[2]=(int)(Math.random()*30)-15;
+      yA1Corners[2]=(int)(Math.random()*30)-15;
+      xA1Corners[3]=(int)(Math.random()*30)-15;
+      yA1Corners[3]=(int)(Math.random()*30)-15;
+      xA1Corners[4]=(int)(Math.random()*30)-15;
+        
+    }
+     public int getRotation() 
+  {if(rotAst <= 2)
+    {rotAst = 5;}
+    if(rotAst > 2)
+    {rotAst = -5;}
+    return (int)rotAst;
+  }
+  public void move()
+  {
+    myCenterX += myDirectionX;    
+    myCenterY += myDirectionY;     
+    myPointDirection += rotAst;
+
+    //wrap around screen    
+    if(myCenterX >width)
+    {     
+      myCenterX = 0;    
+    }    
+    else if (myCenterX<0)
+    {     
+      myCenterX = width;    
+    }    
+    if(myCenterY >height)
+    {    
+      myCenterY = 0;    
+    }   
+    else if (myCenterY < 0)
+    {     
+      myCenterY = height;    
+    }   
+  }
+
+}
+
+
 class SpaceShip extends Floater  
 {   
     //your code here
@@ -494,9 +579,14 @@ class SpaceShip extends Floater
 
     }
 
+
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 { 
+  protected int a1corners;
+  protected int[] xA1Corners;
+  protected int[] yA1Corners;
+  protected int myAColor;
   protected int b1corners;
   protected int[] xB1Corners;
   protected int[] yB1Corners;
@@ -578,7 +668,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     double dRadians = myPointDirection*(Math.PI/180);                 
     int xRotatedTranslated, yRotatedTranslated;    
 
-        beginShape();
+    beginShape();
     for(int nI = 0; nI < b1corners; nI++)    
     {   
         fill(myBColor);   
@@ -633,12 +723,23 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
       
     }
     endShape(CLOSE);
+    beginShape();
+    for(int nI = 0; nI < a1corners; nI++)    
+    {   
+        fill(myAColor);   
+
+      //rotate and translate the coordinates of the floater using current direction 
+      xRotatedTranslated = (int)((xA1Corners[nI]* Math.cos(dRadians)) - (yA1Corners[nI] * Math.sin(dRadians))+myCenterX);     
+      yRotatedTranslated = (int)((xA1Corners[nI]* Math.sin(dRadians)) + (yA1Corners[nI] * Math.cos(dRadians))+myCenterY);      
+      vertex(xRotatedTranslated,yRotatedTranslated);    
+      
+    } 
+    endShape(CLOSE);
     
       /*pushMatrix();
         translate(getX(), getY());
         rotate((int)(dRadians));
         ship(0,0);
-
         
       popMatrix();*/ 
     
@@ -724,9 +825,6 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
             
-
-
-
         
         };
         
