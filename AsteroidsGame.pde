@@ -40,9 +40,8 @@ public void keyPressed(){
     if(key =='f'){
        w0.setX((int)(Math.random()*1000));
        w0.setY((int)(Math.random()*400));
-       w0.setDirectionX(0);
-       w0.setDirectionY(0);
-
+       w0.setDirectionX((int)(Math.random()*360));
+       w0.setDirectionY((int)(Math.random()*360));
        w0.accelerate(0);
 
 
@@ -105,7 +104,7 @@ class SpaceShip extends Floater
     public void setPointDirection(int degrees){myPointDirection=degrees;}
     public double getPointDirection(){return myPointDirection;}
 
-    SpaceShip(){
+    public SpaceShip(){
 
       myBColor=color(255,127,39);
       myColor=color(129, 208, 222);
