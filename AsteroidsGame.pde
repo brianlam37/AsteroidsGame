@@ -40,9 +40,10 @@ public void keyPressed(){
     if(key =='f'){
        w0.setX((int)(Math.random()*1000));
        w0.setY((int)(Math.random()*400));
-       w0.setDirectionX((int)(Math.random()*360));
-       w0.setDirectionY((int)(Math.random()*360));
+       w0.setDirectionX(0);
+       w0.setDirectionY(0);
        w0.accelerate(0);
+       w0.setPointDirection((int)(Math.random()*360));
 
 
 
